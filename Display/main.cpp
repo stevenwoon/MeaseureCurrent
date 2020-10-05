@@ -3,6 +3,7 @@
 #define F_CPU 8000000UL
 #include <util/delay.h>
 #include "atod.h"
+#define FILTER 1
 
 int adc(void)
 {
@@ -22,23 +23,37 @@ int adc(void)
 
 
 int main() {
-  TM1637 disp;
-  disp.setBrightness(0x08);
+	TM1637 disp;
+	disp.setBrightness(0x0f);
 
-//  uint16_t i = 0;
-  initADC();
+	int i;
+	initADC();
+	volatile int value;
+	volatile int value2;
 
-
-
- //  disp.clear();
-
-  while (1) {
-//	  disp.setNumber(i++);
-	disp.setNumber(adc());
-	  _delay_ms(1000);
-//	  if (i > 9999) i = 0;
-   }
-//  disp.scrollChars("Hello World");
-
-//  disp.setChars("done");
+	// 120 increment = 1000 mA
+	// 1 step = 1000/120 mA
+	float ma_step = 1000/120;
+	while (1) {
+/*
+		value = 0;
+		for(i = 0; i < FILTER; ++i) {
+			value += (adc() - 512);
+			_delay_ms(20);
+		}
+	  
+		value = value/FILTER;
+		*/
+		value = adc();
+		value2 = adc();
+		if (((value - value2) < 1) && ((value2 - value) < 1)) {
+			value += value2;
+			value = (value / 2) - 526;
+			if (value < 0) value = -value;
+			value = (int) ((float) value *  ma_step);
+			disp.clear();
+			disp.setNumber(value);
+			_delay_ms(200);
+		}
+	}
 }
