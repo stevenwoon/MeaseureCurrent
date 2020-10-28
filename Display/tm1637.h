@@ -42,8 +42,8 @@
 #define TM_OUT PORTB
 #define TM_IN PINB
 #define TM_DDR DDRB
-#define TM_BIT_CLK _BV(PB2)
-#define TM_BIT_DAT _BV(PB1)
+#define TM_BIT_CLK _BV(PB2)		// Pin 7
+#define TM_BIT_DAT _BV(PB1)		// Pin 6
 
 // ----------------------------------------------------------------------------
 // Functions and parameters

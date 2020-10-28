@@ -5,6 +5,10 @@
 #include "atod.h"
 #define FILTER 1
 
+// CLK (PB2)	Pin 7
+// DAT (PB1)	Pin 6
+// ADC2 (PB4)	Pin 3
+
 int adc(void)
 {
 	uint8_t adc_lobyte; // to hold the low byte of the ADC register (ADCL)
@@ -48,7 +52,8 @@ int main() {
 		value2 = adc();
 		if (((value - value2) < 1) && ((value2 - value) < 1)) {
 			value += value2;
-			value = (value / 2) - 526;
+//			value = (value / 2) - 526;
+			value = (value / 2) - 480;	
 			if (value < 0) value = -value;
 			value = (int) ((float) value *  ma_step);
 			disp.clear();
