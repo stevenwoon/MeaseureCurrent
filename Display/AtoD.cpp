@@ -28,6 +28,7 @@ void initADC()
 
   ADCSRA = 
             (1 << ADEN)  |     // Enable ADC 
+			(1<<ADIE)	|		// Enable ADC interrupt
             (1 << ADPS2) |     // set prescaler to 16, bit 2 
             (0 << ADPS1) |     // set prescaler to 16, bit 1 
             (0 << ADPS0);      // set prescaler to 16, bit 0  

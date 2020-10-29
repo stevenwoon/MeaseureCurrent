@@ -173,7 +173,22 @@
     <Compile Include="atod.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="global.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pbut.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer_interrupt.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pbut.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer_interrupt.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="tm1637.cpp">
@@ -185,6 +200,11 @@
     <Compile Include="tm1637font.h">
       <SubType>compile</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
